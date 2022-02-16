@@ -1,29 +1,33 @@
 ﻿using MarsRover.Entities;
 using MarsRover.Extensions;
+using MarsRover.Test.SampleDatas;
 using Xunit;
 
 namespace MarsRover.Test
 {
     public class RoverExtensionTest
     {
-        [Fact]
-        public void IsOutOfPlateau_RoverOutOfPlateau_ReturnTrue()
-        {
-            Rover rover = new Rover(1, 2, "N");
-            Plateau plateau = new Plateau(5, 5);
+        private readonly Plateau _plateau;
 
-            bool actual = rover.IsOutOfPlateau(plateau);
+        public RoverExtensionTest()
+        {
+            _plateau = new Plateau(5, 5);
+        }
+
+        [Theory]
+        [ClassData(typeof(IsOutOfPlateauFalseTestDatas))]
+        public void IsOutOfPlateau_RoverInPlateau_ReturnFalse(Rover rover)
+        {
+            bool actual = rover.IsOutOfPlateau(_plateau);
 
             Assert.False(actual);
         }
 
-        [Fact]
-        public void IsOutOfPlateau_RoverInPlateau_ReturnFalse()
+        [Theory]
+        [ClassData(typeof(IsOutOfPlateauTrueTestDatas))]
+        public void IsOutOfPlateau_RoverOutOfPlateau_ReturnTrue(Rover rover)
         {
-            Rover rover = new Rover(6, 5, "N");
-            Plateau plateau = new Plateau(5, 5);
-
-            bool actual = rover.IsOutOfPlateau(plateau);
+            bool actual = rover.IsOutOfPlateau(_plateau);
 
             Assert.True(actual);
         }

@@ -12,18 +12,12 @@ namespace MarsRover.Test
         [Fact]
         public void ConvertToCommandEnum_ValidCommands_ReturnCommandEnumList()
         {
-            string commands = "LMLMLMLMM";
+            string commands = "LMR";
             var expected = new List<Command>()
             {
                 Command.L,
                 Command.M,
-                Command.L,
-                Command.M,
-                Command.L,
-                Command.M,
-                Command.L,
-                Command.M,
-                Command.M
+                Command.R,
             };
 
             var actual = commands.ConvertToCommandEnum();
@@ -32,11 +26,11 @@ namespace MarsRover.Test
         }
 
         [Fact]
-        public void ConvertToCommandEnum_InvalidCommands_Throws()
+        public void ConvertToCommandEnum_InvalidCommandsThrowsInvalidCommandException()
         {
-            string commands = "X";
+            const string INVALID_COMMAND = "X";
 
-            Action actual = () => commands.ConvertToCommandEnum();
+            Action actual = () => INVALID_COMMAND.ConvertToCommandEnum();
 
             Assert.Throws<InvalidCommandException>(actual);
         }
