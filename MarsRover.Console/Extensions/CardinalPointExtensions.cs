@@ -14,7 +14,7 @@ namespace MarsRover.Extensions
             }
             else
             {
-                throw new InvalidCardinalPointException("Invalid cardinal point entered");
+                throw new InvalidCardinalPointException($"Invalid cardinal point was entered. Invalid Cardinal Point: {orientation}");
             }
         }
     }
