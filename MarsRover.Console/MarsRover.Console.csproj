@@ -8,10 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Entities\" />
-    <Folder Include="Enums\" />
-    <Folder Include="Exceptions\" />
-    <Folder Include="Extensions\" />
     <Folder Include="Implementations\Strategies\" />
     <Folder Include="Interfaces\" />
   </ItemGroup>
