@@ -8,13 +8,14 @@ namespace MarsRover.Test
 {
     public class CardinalPointExtensionTest
     {
-        [Fact]
-        public void ConvertToCardinalPointEnum_ValidCardinalPointString_ReturnCardinalPointEnum()
+        [Theory]
+        [InlineData("N", CompassCardinalPoint.N)]
+        [InlineData("W", CompassCardinalPoint.W)]
+        [InlineData("S", CompassCardinalPoint.S)]
+        [InlineData("E", CompassCardinalPoint.E)]
+        public void ConvertToCardinalPointEnum_ValidCardinalPointString_ReturnCardinalPointEnum(string command, CompassCardinalPoint expected)
         {
-            string commands = "N";
-            var expected = CompassCardinalPoint.N;
-
-            var actual = commands.ConvertToCardinalPointEnum();
+            var actual = command.ConvertToCardinalPointEnum();
 
             Assert.Equal(expected, actual);
         }
@@ -22,9 +23,9 @@ namespace MarsRover.Test
         [Fact]
         public void ConvertToCardinalPointEnum_InvalidCommands_ThrowsInvalidCardinalPointException()
         {
-            string commands = "X";
+            const string INVALID_CARDINAL_POINT = "X";
 
-            Action actual = () => commands.ConvertToCardinalPointEnum();
+            Action actual = () => INVALID_CARDINAL_POINT.ConvertToCardinalPointEnum();
 
             Assert.Throws<InvalidCardinalPointException>(actual);
         }
